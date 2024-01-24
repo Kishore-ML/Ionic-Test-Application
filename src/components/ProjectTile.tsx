@@ -8,7 +8,7 @@ import './style.css';
 const ProjectTile:React.FC<{projectName:string}> = ({projectName}) =>{
     const history = useHistory();
     return(
-        <IonCard onClick={() => history.push('/explorer')}>
+        <IonCard onClick={() => history.push('/project')}>
             <img src={project}></img>
             <IonToolbar>
                 <IonTitle style={{fontSize:'1rem'}}>{projectName}</IonTitle>

@@ -8,7 +8,6 @@ const Header: React.FC<{toggleNavBar:() => void}> = ({toggleNavBar}) => {
   const [showDiv, setShowDiv] = useState(true);
   useEffect(() => {
     const handleResize = () => {
-      // Adjust the condition based on your desired screen width
       if (window.innerWidth <= 488) {
         setShowDiv(false);
       } else {

@@ -40,7 +40,7 @@ const App: React.FC = () => {
           <Header toggleNavBar={toggleNavBar}/>
           <Router>
             <Route path='/' exact   component={ProjectsPage} />
-            <Route path='/explorer' render={(props) => <ProjectPage {...props} expanded={expanded} />}  />
+            <Route path='/project' render={(props) => <ProjectPage {...props} expanded={expanded} />}  />
           </Router>
         </IonContent>
   </IonApp>

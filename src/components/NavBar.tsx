@@ -13,7 +13,7 @@ const NavBar:React.FC<{expanded:boolean}> = ({expanded}) =>{
                     <IonIcon icon={arrowBack}></IonIcon>
                     <IonLabel style={{paddingLeft:'1rem'}}>All Projects</IonLabel>
                 </IonItem>
-                <IonAccordionGroup>
+                <IonAccordionGroup onClick={() => history.push('/project')}>
                     <IonAccordion>
                         <IonItem slot='header'  color="primary">
                             <IonIcon icon={folderSharp}></IonIcon>
@@ -33,27 +33,27 @@ const NavBar:React.FC<{expanded:boolean}> = ({expanded}) =>{
                         </IonItem>
                     </IonAccordion>
                 </IonAccordionGroup>
-                <IonItem color="primary">
+                <IonItem color="primary" onClick={() => history.push('/project/activity')}>
                     <IonIcon icon={timeOutline}></IonIcon>
                     <IonLabel style={{paddingLeft:'1rem'}}>Activity</IonLabel>
                 </IonItem>
-                <IonItem color="primary">
+                <IonItem color="primary" onClick={() => history.push('/project/topics')}>
                     <IonIcon icon={colorFilter}></IonIcon>
                     <IonLabel style={{paddingLeft:'1rem'}}>Topics</IonLabel>
                 </IonItem>
-                <IonItem color="primary">
+                <IonItem color="primary" onClick={() => history.push('/project/todo')}>
                     <IonIcon icon={clipboard}></IonIcon>
                     <IonLabel style={{paddingLeft:'1rem'}}>Todo</IonLabel>
                 </IonItem>
-                <IonItem color="primary">
+                <IonItem color="primary" onClick={() => history.push('/project/team')}>
                     <IonIcon icon={people}></IonIcon>
                     <IonLabel style={{paddingLeft:'1rem'}}>Team</IonLabel>
                 </IonItem>
-                <IonItem color="primary">
+                <IonItem color="primary" onClick={() => history.push('/project/property')}>
                     <IonIcon icon={newspaper}></IonIcon>
                     <IonLabel style={{paddingLeft:'1rem'}}>Property Set Libraries</IonLabel>
                 </IonItem>
-                <IonAccordionGroup>
+                <IonAccordionGroup onClick={() => history.push('/project/settings')}>
                     <IonAccordion>
                         <IonItem slot='header'  color="primary">
                             <IonIcon icon={settings}></IonIcon>
