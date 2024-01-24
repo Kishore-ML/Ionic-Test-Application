@@ -23,19 +23,29 @@ import Header from './components/Header';
 import ProjectsPage from './pages/ProjectsPage';
 import ProjectPage from './pages/ProjectPage';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { useState } from 'react';
 
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
+const App: React.FC = () => {
+  const [expanded,setExpanded] = useState(false);
+
+   function toggleNavBar()
+  {
+    expanded?setExpanded(false):setExpanded(true);
+  }
+  return(
+    <IonApp>
         <IonContent>
-          <Header />
+          <Header toggleNavBar={toggleNavBar}/>
           <Router>
-            <Route path='/' exact component={ProjectsPage} />
-            <Route path='/explorer' exact component={ProjectPage} />
+            <Route path='/' exact   component={ProjectsPage} />
+            <Route path='/explorer' render={(props) => <ProjectPage {...props} expanded={expanded} />}  />
           </Router>
         </IonContent>
   </IonApp>
-);
-
+  )
+  
+}
+  
 export default App;

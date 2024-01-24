@@ -2,8 +2,8 @@ import React from "react";
 import { IonButton, IonButtons, IonCard, IonIcon, IonTitle, IonToolbar } from "@ionic/react";
 import project from '../../public/project.png';
 import { ellipsisVertical } from "ionicons/icons";
-import './style.css';
 import { useHistory } from "react-router";
+import './style.css';
 
 const ProjectTile:React.FC<{projectName:string}> = ({projectName}) =>{
     const history = useHistory();

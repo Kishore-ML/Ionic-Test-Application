@@ -1,14 +1,39 @@
+import React, { useEffect, useState } from "react";
 import { IonButton, IonButtons, IonHeader, IonIcon, IonTitle, IonToolbar } from "@ionic/react";
-import { searchOutline, helpCircle, apps, personCircle } from "ionicons/icons";
-import React from "react";
+import { searchOutline, helpCircle, apps, personCircle, menu } from "ionicons/icons";
+import connect from '../../public/ConnectLogo.svg';
 
-const Header: React.FC = () =>{
+const Header: React.FC<{toggleNavBar:() => void}> = ({toggleNavBar}) => {
+
+  const [showDiv, setShowDiv] = useState(true);
+  useEffect(() => {
+    const handleResize = () => {
+      // Adjust the condition based on your desired screen width
+      if (window.innerWidth <= 488) {
+        setShowDiv(false);
+      } else {
+        setShowDiv(true);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+    
     return(
         <IonHeader color="primary">
           <IonToolbar>
-            <IonTitle>
-              <b>Trimble</b> Connect
-            </IonTitle>
+            <IonButtons slot='start'>
+                <IonButton onClick={toggleNavBar}>
+                  <IonIcon  slot="icon-only" icon={menu} />
+                </IonButton> 
+            </IonButtons>
+            {showDiv && 
+            <IonTitle style={{alignItems:'center'}}>
+              <img src={connect} className="header-img"></img>
+            </IonTitle>} 
             <IonButtons slot='end'>
               <IonButton >
                 <IonIcon slot="icon-only" icon={searchOutline}></IonIcon>
