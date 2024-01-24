@@ -6,7 +6,7 @@ const PropertySet:React.FC = () =>{
     return(
         <IonGrid>
             <IonRow>
-                <IonToolbar style={{padding:'0 1rem'}}>
+                <IonToolbar>
                     <IonTitle>
                         Explorer
                     </IonTitle>
