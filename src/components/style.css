@@ -13,7 +13,7 @@ img{
     padding: 2rem 1rem;
 }
 .navbar-container{
-    transition: all 0.35s ease-in;
+    transition: all 0.55s ease-in;
     width:3.4rem;
     overflow: hidden;
 }
@@ -22,7 +22,7 @@ img{
 }
 .expanded{
     width:17rem;
-    transition: all 0.35s ease-in;
+    transition: all 0.55s ease-in;
 }
 .project-page{
     display: flex;
