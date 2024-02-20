@@ -39,7 +39,7 @@ const App: React.FC = () => {
   }, []);
   async function setLocals(){
     await store.create();
-    await store.set('key', 'Explorer');
+    await store.set('key', 'Content');
   }
 
    function toggleNavBar()
