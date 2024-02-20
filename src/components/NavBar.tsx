@@ -2,9 +2,7 @@ import { IonAccordion, IonAccordionGroup, IonButton, IonIcon, IonItem, IonLabel,
 import { arrowBack, cameraSharp, clipboard, colorFilter, cubeSharp, folderOpenSharp, folderSharp, newspaper, people, settings, timeOutline } from "ionicons/icons";
 import React from "react";
 import { useHistory } from "react-router";
-import { Plugins } from '@capacitor/core';
 
-const { WebBrowser } = Plugins;
 
 const NavBar:React.FC<{expanded:boolean}> = ({expanded}) =>{
     const history = useHistory();
@@ -56,7 +54,7 @@ const NavBar:React.FC<{expanded:boolean}> = ({expanded}) =>{
                     <IonIcon icon={newspaper}></IonIcon>
                     <IonLabel style={{paddingLeft:'1rem'}}>Property Set Libraries</IonLabel>
                 </IonItem>
-                <IonAccordionGroup onClick={() => history.push('/project/settings')} >
+                <IonAccordionGroup  >
                     <IonAccordion>
                         <IonItem slot='header'  color="primary">
                             <IonIcon icon={settings}></IonIcon>

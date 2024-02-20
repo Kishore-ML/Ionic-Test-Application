@@ -1,14 +1,29 @@
 import { IonGrid, IonRow, IonToolbar, IonTitle, IonButtons, IonButton, IonIcon, IonLabel } from "@ionic/react";
 import { gridSharp, listSharp } from "ionicons/icons";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Storage } from '@ionic/storage';
 
 const PropertySet:React.FC = () =>{
+    
+    const [storageValue, setStorageValue] = useState('Default');
+
+    useEffect(() => {
+        const getStorageValue = async () => {
+            const store = new Storage();
+            store.create();
+            const value = await store.get('key');
+            setStorageValue(value);
+          };
+      getStorageValue();
+    },[]);
+    
+
     return(
         <IonGrid>
             <IonRow>
                 <IonToolbar>
                     <IonTitle>
-                        Explorer
+                    {storageValue}
                     </IonTitle>
                     <IonButtons slot='end'>
                         <IonButton>

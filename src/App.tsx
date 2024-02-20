@@ -1,6 +1,8 @@
-
+import React, { useEffect } from 'react';
 import { IonApp, IonContent, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 
+// import { Deeplinks } from '@ionic-native/deeplinks/ngx';
+// import { Platform } from '@ionic/angular';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -24,11 +26,21 @@ import ProjectsPage from './pages/ProjectsPage';
 import ProjectPage from './pages/ProjectPage';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { useState } from 'react';
+import { Storage } from '@ionic/storage';
+
 
 setupIonicReact();
 
 const App: React.FC = () => {
   const [expanded,setExpanded] = useState(false);
+  const store = new Storage();
+  useEffect(() => {
+    setLocals();
+  }, []);
+  async function setLocals(){
+    await store.create();
+    await store.set('key', 'Explorer');
+  }
 
    function toggleNavBar()
   {
