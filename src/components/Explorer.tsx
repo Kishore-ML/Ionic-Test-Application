@@ -1,5 +1,5 @@
 import { IonGrid, IonRow, IonToolbar, IonTitle, IonButtons, IonButton, IonIcon, IonLabel, IonAlert, IonList, IonItemSliding, IonItem, IonFab, IonFabButton, IonFabList } from "@ionic/react";
-import { addCircle, document, fileTray, folder, folderOpenOutline, gridSharp, listSharp } from "ionicons/icons";
+import { addCircle, document, documentSharp, fileTray, folder, folderOpenOutline, folderOpenSharp, gridSharp, listSharp, trash } from "ionicons/icons";
 import React, { useEffect, useRef, useState } from "react";
 import { Storage } from '@ionic/storage';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
@@ -66,9 +66,17 @@ const PropertySet:React.FC = () =>{
               }
         }
 
+        async function deleteFileOrFolder(name:string){
+            await Filesystem.deleteFile({
+                directory: APP_DIRECTORY,
+                path: currentFolder+'/'+name
+            });
+            loadDocuments();
+        }
+
 
     return(
-        <IonGrid style={{padding:'1rem'}}>
+        <IonGrid>
             {currentWidth <= 426 && 
             <IonFab vertical="bottom" horizontal="end">
                 <IonFabButton>
@@ -78,12 +86,12 @@ const PropertySet:React.FC = () =>{
                     <IonFabButton>
                         <IonIcon icon={document} onClick={() => fileInputRef.current?.click()}></IonIcon>
                     </IonFabButton>
-                    <IonFabButton id='new-folder' >
+                    <IonFabButton id='create-folder' >
                         <IonIcon icon={folder} ></IonIcon>
                     </IonFabButton>
                 </IonFabList>
                 <IonAlert
-                        trigger="new-folder"
+                        trigger="create-folder"
                         header="Create New Folder"
                         inputs={[{name: 'folderName', type: 'text', placeholder: 'Folder Name'}]}
                         buttons={[{text:'Create', handler: (data) => createFolder(data.folderName)}, {text: 'Cancel', role: 'cancel'}]}
@@ -104,7 +112,6 @@ const PropertySet:React.FC = () =>{
                         </IonButton>
                         <IonButton>3D</IonButton>
                     </IonButtons>
-                    
                     {currentWidth > 426 && <IonButton slot="end" fill="solid" id="new-folder">New</IonButton> }
                     <IonAlert
                         trigger="new-folder"
@@ -115,15 +122,18 @@ const PropertySet:React.FC = () =>{
                 </IonToolbar>
             </IonRow>
             <IonRow>
-                <IonGrid className="ion-padding">
+                <IonGrid style={currentWidth > 836 ? {padding:'0 7rem'}:{}}>
                     <IonLabel>LocalStorage value: {storageValue}</IonLabel>
                     <IonList>
                         <IonItemSliding>
                             {folders.map((folder) => {
                                 return (
                                     <IonItem>
-                                        <IonIcon icon={folder.isFile ? document:folderOpenOutline}></IonIcon>
-                                        {folder.name}
+                                        <IonIcon icon={folder.isFile ? documentSharp :folderOpenSharp }></IonIcon>
+                                        <div style={{paddingLeft:"0.5rem",whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{folder.name}</div>
+                                        <IonButton slot="end" fill="solid" color='medium' onClick={() => deleteFileOrFolder(folder.name)} >
+                                            <IonIcon icon={trash}></IonIcon>
+                                        </IonButton>
                                     </IonItem>
                                 )}
                            )}

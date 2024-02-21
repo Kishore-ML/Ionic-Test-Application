@@ -30,3 +30,9 @@ img{
 .project-page-container{
     width:'100%';
 }
+
+.input-wrapper{
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

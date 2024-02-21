@@ -27,30 +27,33 @@ import ProjectPage from './pages/ProjectPage';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { useState } from 'react';
 import { Storage } from '@ionic/storage';
-
+import AppUrlListener from './pages/AppUrListener';
 
 setupIonicReact();
 
 const App: React.FC = () => {
   const [expanded,setExpanded] = useState(false);
   const store = new Storage();
+
   useEffect(() => {
     setLocals();
   }, []);
+
   async function setLocals(){
     await store.create();
     await store.set('key', 'Content');
   }
 
-   function toggleNavBar()
-  {
+  function toggleNavBar(){
     expanded?setExpanded(false):setExpanded(true);
   }
+
   return(
     <IonApp>
         <IonContent>
           <Header toggleNavBar={toggleNavBar}/>
           <Router>
+            <AppUrlListener />
             <Route path='/' exact   component={ProjectsPage} />
             <Route path='/project' render={(props) => <ProjectPage {...props} expanded={expanded} />}  />
           </Router>
