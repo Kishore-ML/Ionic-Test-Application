@@ -13,7 +13,7 @@ const Team:React.FC = () =>{
         </IonRow>
         <IonRow>
             <IonGrid className="ion-padding">
-                <IonLabel>Teams page Content</IonLabel>
+                <IonLabel>{window.location.href}</IonLabel>
             </IonGrid>
         </IonRow>  
      </IonGrid>

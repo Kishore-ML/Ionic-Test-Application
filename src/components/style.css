@@ -31,8 +31,8 @@ img{
     width:'100%';
 }
 
-.input-wrapper{
-  white-space: nowrap; 
-  overflow: hidden;
-  text-overflow: ellipsis;
+.content-name{
+  white-space: nowrap !important;; 
+  overflow: hidden !important;;
+  text-overflow: ellipsis !important;;
 }

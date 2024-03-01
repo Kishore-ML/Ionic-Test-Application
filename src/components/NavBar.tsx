@@ -34,11 +34,11 @@ const NavBar:React.FC<{expanded:boolean}> = ({expanded}) =>{
                         </IonItem>
                     </IonAccordion>
                 </IonAccordionGroup>
-                <IonItem color="primary" onClick={() => history.push('/project/activity')}>
+                <IonItem color="primary" onClick={() => window.open('ionic.testapp://project/?code="authcode"','_blank')}>
                     <IonIcon icon={timeOutline}></IonIcon>
                     <IonLabel style={{paddingLeft:'1rem'}}>Activity</IonLabel>
                 </IonItem>
-                <IonItem color="primary" onClick={() => history.push('/project/topics')}>
+                <IonItem color="primary" onClick={() => window.open('https://stylexjs.com/docs/learn/','_blank')}>
                     <IonIcon icon={colorFilter}></IonIcon>
                     <IonLabel style={{paddingLeft:'1rem'}}>Topics</IonLabel>
                 </IonItem>

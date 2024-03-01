@@ -5,8 +5,11 @@ const config: CapacitorConfig = {
   appName: 'Ionic_Test_App',
   webDir: 'dist',
   server: {
-    androidScheme: 'https'
-  }
+    androidScheme: 'https',
+  },
+  ios: {
+    scheme: 'myapp' // Custom URL scheme for iOS
+  },
 };
 
 export default config;

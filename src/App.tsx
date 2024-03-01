@@ -29,6 +29,7 @@ import { useState } from 'react';
 import { Storage } from '@ionic/storage';
 import AppUrlListener from './pages/AppUrListener';
 
+
 setupIonicReact();
 
 const App: React.FC = () => {
@@ -42,6 +43,7 @@ const App: React.FC = () => {
   async function setLocals(){
     await store.create();
     await store.set('key', 'Content');
+    localStorage.setItem('browser','Browser local storage');
   }
 
   function toggleNavBar(){
@@ -54,7 +56,7 @@ const App: React.FC = () => {
           <Header toggleNavBar={toggleNavBar}/>
           <Router>
             <AppUrlListener />
-            <Route path='/' exact   component={ProjectsPage} />
+            <Route path='/' exact component={ProjectsPage} />
             <Route path='/project' render={(props) => <ProjectPage {...props} expanded={expanded} />}  />
           </Router>
         </IonContent>

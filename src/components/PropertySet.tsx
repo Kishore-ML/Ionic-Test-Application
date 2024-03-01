@@ -13,7 +13,7 @@ const PropertySet:React.FC = () =>{
         </IonRow>
         <IonRow>
             <IonGrid className="ion-padding">
-                <IonLabel>Property Set Library Content</IonLabel>
+                <IonLabel>{window.location.href}</IonLabel>
             </IonGrid>
         </IonRow>  
      </IonGrid>

@@ -4,15 +4,27 @@ import React, { useEffect, useRef, useState } from "react";
 import { Storage } from '@ionic/storage';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import write_blob from "capacitor-blob-writer";
+import { Plugins } from '@capacitor/core';
+import './style.css';
 
 const APP_DIRECTORY = Directory.Documents;
 const PropertySet:React.FC = () =>{
-    
+    const {App} = Plugins;
     const [storageValue, setStorageValue] = useState('Default');
+    const [browserStorage, setBrowserStorage] = useState('' as string);
     const [folders, setFolders] = useState([] as any[]);
     const [currentFolder, setCurrentFolder] = useState('');
     const [currentWidth, setCurrentWidth] = useState(window.screen.width);
+    const [authcode, setAuthCode] = useState('' as string);
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        App.addListener('appUrlOpen', (data:any) => {
+            console.log('App opened with URL:', data.url);
+            const url = decodeURIComponent(data.url);
+            setAuthCode(url.split('=')[1] as string);  
+        });
+    }, []);
 
     window.addEventListener('resize', () => { 
         setCurrentWidth(window.screen.width);
@@ -23,6 +35,8 @@ const PropertySet:React.FC = () =>{
             const store = new Storage();
             store.create();
             const value = await store.get('key');
+            const local = localStorage.getItem('browser');
+            setBrowserStorage(local as string);
             setStorageValue(value);
           };
       getStorageValue();
@@ -123,14 +137,14 @@ const PropertySet:React.FC = () =>{
             </IonRow>
             <IonRow>
                 <IonGrid style={currentWidth > 836 ? {padding:'0 7rem'}:{}}>
-                    <IonLabel>LocalStorage value: {storageValue}</IonLabel>
+                    <IonLabel><b>Code:</b> {authcode}</IonLabel>
                     <IonList>
                         <IonItemSliding>
                             {folders.map((folder) => {
                                 return (
                                     <IonItem>
                                         <IonIcon icon={folder.isFile ? documentSharp :folderOpenSharp }></IonIcon>
-                                        <div style={{paddingLeft:"0.5rem",whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{folder.name}</div>
+                                        <IonLabel class="content-name" style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipses'}}>{folder.name}</IonLabel>
                                         <IonButton slot="end" fill="solid" color='medium' onClick={() => deleteFileOrFolder(folder.name)} >
                                             <IonIcon icon={trash}></IonIcon>
                                         </IonButton>
